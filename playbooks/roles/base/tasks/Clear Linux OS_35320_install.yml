@@ -8,8 +8,13 @@
     - default.yml
 
 
-- name: "Install system packages"
-  package:
-    name: '{{ system_packages }}'
-    use: '{{ ansible_pkg_mgr }}'
-    state: present
+# - name: "Install system packages"
+#   package:
+#     name: '{{ system_packages }}'
+#     use: '{{ ansible_pkg_mgr }}'
+#     state: present
+
+  - name: Install CIAO from clearlinux bundles
+    command: swupd bundle-add git {{ swupd_args | default('') }}
+    args:
+      creates: /usr/share/clear/bundles/git
