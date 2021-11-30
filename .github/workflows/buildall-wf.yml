@@ -1,0 +1,62 @@
+name: "build all CI workflow"
+
+
+on:
+  push:
+    branches: [ test ]
+  schedule:
+      # https://crontab.guru/examples.html #every friday at midnight  
+      - cron:  '0 0 * * FRI' 
+jobs:
+
+  ubuntu-latest-2110-job:
+    name: "docker  ansible clearlinux"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+        #  - cgit
+        #  - clr-installer-ci
+        #  - golang
+        #  - haproxy
+        #  - httpd
+        #  - iperf
+        #  - machine-learning-ui
+        #  - mariadb
+        #  - memcached
+        #  - mixer-ci
+        #  - nginx
+        #  - node
+        #  - openjdk/8
+        #  - openjdk/13
+        #  - openvino
+        #  - os-core
+        #  - perl
+        #  - php
+        #  - php-fpm
+        #  - postgres
+         - python
+        #  - rabbitmq
+        #  - redis
+        #  - ruby
+        #  - tensorflow
+        #  - tensorflow-serving
+        #  - wordpress                 
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: |
+        hostnamectl status
+        lsb_release -a
+        lsb_release -d
+        cat /etc/lsb-release
+        cat /etc/issue
+        cat /etc/os-release
+        sudo apt-get install -y neofetch && neofetch    
+    - name: "run test"
+      run: |
+        dir=$(pwd)
+        cd $dir/dockerfiles
+        cd ${{matrix.node}}
+        docker build -t clearlinux/${{matrix.node}} .
+        cd $dir
