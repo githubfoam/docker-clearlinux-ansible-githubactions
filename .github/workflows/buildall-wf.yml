@@ -17,7 +17,7 @@ jobs:
         node:
         #  - cgit
         #  - clr-installer-ci
-        #  - golang
+         - golang
         #  - haproxy
         #  - httpd
         #  - iperf
