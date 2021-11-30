@@ -35,7 +35,11 @@ jobs:
           # all subsequent Dockerfile commands generate new images and the cache is not used
           sudo docker build --no-cache --rm  -t ${name}:${version}  . --file ${dockerdir}/${dockerfile}
           docker image ls
-          docker run -it --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
+          # the input device is not a TTY
+          # docker run -it --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
+          docker run --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
+          docker image ls
+          docker container ls
           docker network ls
           # get network id of bridge
           docker network inspect $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
