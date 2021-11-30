@@ -42,5 +42,8 @@ jobs:
           docker container ls
           docker network ls
           # get network id of bridge
-          docker network inspect $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
-          docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' iperf-srv
+          # docker network inspect $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
+          # docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' iperf-srv
+          CONTAINER_IP=$(sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' iperf-srv)
+          echo $CONTAINER_IP
+          sudo docker run -it --rm --network=host clearlinux/iperf -c $CONTAINER_IP
