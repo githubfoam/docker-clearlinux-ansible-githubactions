@@ -37,6 +37,7 @@ jobs:
           docker image ls
           # the input device is not a TTY
           # docker run -it --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
+          # Run as Server
           docker run --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
           docker image ls
           docker container ls
@@ -46,4 +47,7 @@ jobs:
           # docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' iperf-srv
           CONTAINER_IP=$(sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' iperf-srv)
           echo $CONTAINER_IP
-          sudo docker run -it --rm --network=host clearlinux/iperf -c $CONTAINER_IP
+          # Run as Client (server IP address):
+          # the input device is not a TTY
+          # sudo docker run -it --rm --network=host clearlinux/iperf -c $CONTAINER_IP
+          sudo docker run --rm --network=host clearlinux/iperf -c $CONTAINER_IP
