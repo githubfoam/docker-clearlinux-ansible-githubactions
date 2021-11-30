@@ -12,7 +12,7 @@ RUN swupd update && \
     # ./libvirtd.sh && \
     wget https://raw.githubusercontent.com/AntonioMeireles/ClearLinux-packer/master/extras/clearlinux/setup/vagrant.sh && \
     chmod +x vagrant.sh && \
-    cat vagrant.sh && \
+    cat vagrant.sh
     # ./vagrant.sh && \
     # vagrant --version && \
     # vagrant up --provider=libvirt && \

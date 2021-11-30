@@ -37,6 +37,6 @@ jobs:
           docker image ls
           docker run -it --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
           docker network ls
-          # docker network inspect cf6137a88898
           # get network id of bridge
           docker network inspect $(docker network ls | grep "bridge" | awk '/ / { print $1 }')
+          docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' iperf-srv
