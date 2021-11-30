@@ -52,5 +52,7 @@ jobs:
           # sudo docker run -it --rm --network=host clearlinux/iperf -c $CONTAINER_IP
           sudo docker run --rm --network=host clearlinux/iperf -c $CONTAINER_IP
           # https://gist.github.com/githubfoam/7f2edc5bd6bb5d30199360c7fccc04ae
-          #set the number of parallel client streams (5 in this example), which run at the same time, using the -P options
-          sudo docker run --rm --network=host clearlinux/iperf -c $CONTAINER_IP -f K -w 500K -P 5
+          ###################################################################
+          ## -b flag, replacing the number after with the maximum bandwidth
+          ###################################################################
+          sudo docker run --rm --network=host clearlinux/iperf -c $CONTAINER_IP -u -b 1000m
