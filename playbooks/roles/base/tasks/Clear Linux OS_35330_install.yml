@@ -1,0 +1,27 @@
+---
+#https://docs.ansible.com/ansible/2.3/include_vars_module.html
+- name: "Load a variable file based on the OS type, or a default if not found"
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family }}.yml"
+    -  "{{ ansible_distribution }}_{{ ansible_distribution_version }}.yml"
+    - default.yml
+
+
+# - name: "Install system packages"
+#   package:
+#     name: '{{ system_packages }}'
+#     use: '{{ ansible_pkg_mgr }}'
+#     state: present
+
+- name: "Install git"
+  command: swupd bundle-add git {{ swupd_args | default('') }}
+  args:
+      creates: /usr/share/clear/bundles/git
+
+# https://github.com/clearlinux/common
+# Error: Bundle too large by 6489M
+# - name: "Developer tooling framework for Clear Linux"
+#   command: swupd bundle-add os-clr-on-clr {{ swupd_args | default('') }}
+#   args:
+#       creates: /usr/share/clear/bundles/os-clr-on-clr     

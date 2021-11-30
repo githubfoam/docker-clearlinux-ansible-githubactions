@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       version: "latest"
-      name: "clearlinux/ansible"
+      name: "clearlinux/iperf"
       dockerdir: "dockerfiles"
       dockerfile: "Dockerfile.clearlinux.iperf" 
       playbookfile: "clearlinux.yml"               
@@ -35,9 +35,6 @@ jobs:
           # all subsequent Dockerfile commands generate new images and the cache is not used
           sudo docker build --no-cache --rm  -t ${name}:${version}  . --file ${dockerdir}/${dockerfile}
           docker image ls
-          # syntax-check
-          # sudo docker run -e ANSIBLE_FORCE_COLOR=1 --privileged --volume="${PWD}":/home/ansible:ro ${name} ansible-playbook -vvv /home/ansible/playbooks/${playbookfile} --syntax-check
-          #dry-run
-          # sudo docker run -e ANSIBLE_FORCE_COLOR=1 --privileged --volume="${PWD}":/home/ansible:ro ${name} ansible-playbook -vvv /home/ansible/playbooks/${playbookfile} --check 
-          # sudo docker run -e ANSIBLE_FORCE_COLOR=1 --privileged --volume="${PWD}":/home/ansible:ro ${name} ansible-playbook -vvv /home/ansible/playbooks/${playbookfile}
-                           
+          docker run -it --rm --name=iperf-srv -p 5201:5201 clearlinux/iperf -s &
+          docker network ls
+          # docker network inspect cf6137a88898

@@ -8,10 +8,12 @@ RUN swupd update && \
     swupd bundle-add unzip rsync wget kvm-host && \
     wget https://raw.githubusercontent.com/AntonioMeireles/ClearLinux-packer/master/extras/clearlinux/setup/libvirtd.sh && \
     chmod +x libvirtd.sh && \
-    ./libvirtd.sh && \
+    cat libvirtd.sh && \
+    # ./libvirtd.sh && \
     wget https://raw.githubusercontent.com/AntonioMeireles/ClearLinux-packer/master/extras/clearlinux/setup/vagrant.sh && \
     chmod +x vagrant.sh && \
-    ./vagrant.sh && \
-    vagrant --version && \
-    vagrant up --provider=libvirt && \
-    vagrant status
+    cat vagrant.sh && \
+    # ./vagrant.sh && \
+    # vagrant --version && \
+    # vagrant up --provider=libvirt && \
+    # vagrant status
