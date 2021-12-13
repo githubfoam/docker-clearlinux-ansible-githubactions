@@ -15,33 +15,8 @@ jobs:
     strategy:
       matrix:
         node:
-        #  - cgit
-        #  - clr-installer-ci
          - golang
-        #  - haproxy
-        #  - httpd
-        #  - iperf
-        #  - machine-learning-ui
-        #  - mariadb
-        #  - memcached
-        #  - mixer-ci
-        #  - nginx
-        #  - node
-        #  - openjdk/8
-        #  - openjdk/13
-        #  - openvino
-        #  - os-core
-        #  - perl
-        #  - php
-        #  - php-fpm
-        #  - postgres
-         - python
-        #  - rabbitmq
-        #  - redis
-        #  - ruby
-        #  - tensorflow
-        #  - tensorflow-serving
-        #  - wordpress                 
+         - python                 
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
