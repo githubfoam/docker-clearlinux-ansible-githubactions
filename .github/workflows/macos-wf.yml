@@ -30,7 +30,7 @@ jobs:
         cat /etc/issue
         cat /etc/os-release
         sudo apt-get install -y neofetch && neofetch   
-    - name: "run test"
+    - name: "run docker-osx"
       run: |
         dir=$(pwd)
         cd $dir/dockerfiles/macos

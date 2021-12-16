@@ -22,15 +22,15 @@ jobs:
          - apache                 
     steps:
     - uses: actions/checkout@v2
-    - name: "os fingerprinting"
-      run: |
-        hostnamectl status
-        lsb_release -a
-        lsb_release -d
-        cat /etc/lsb-release
-        cat /etc/issue
-        cat /etc/os-release
-        sudo apt-get install -y neofetch && neofetch   
+    # - name: "os fingerprinting"
+    #   run: |
+    #     hostnamectl status
+    #     lsb_release -a
+    #     lsb_release -d
+    #     cat /etc/lsb-release
+    #     cat /etc/issue
+    #     cat /etc/os-release
+    #     sudo apt-get install -y neofetch && neofetch   
     - name: "run test"
       run: |
         dir=$(pwd)
