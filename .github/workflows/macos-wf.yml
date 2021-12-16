@@ -1,4 +1,4 @@
-name: "windows build all CI workflow"
+name: "macos build all CI workflow"
 
 
 on:
@@ -18,7 +18,7 @@ jobs:
         #  - golang
         #  - python
          #windows cluster
-         - apache                 
+         - base                 
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
@@ -33,7 +33,8 @@ jobs:
     - name: "run test"
       run: |
         dir=$(pwd)
-        cd $dir/dockerfiles/windows
+        cd $dir/dockerfiles/macos
         cd ${{matrix.node}}
-        docker build -t windows/${{matrix.node}} .
+        docker build -t docker-osx/${{matrix.node}} .
+        # docker build -t docker-osx --build-arg VERSION=10.15.5 --build-arg SIZE=200G .
         cd $dir         
