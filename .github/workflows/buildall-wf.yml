@@ -34,5 +34,10 @@ jobs:
         dir=$(pwd)
         cd $dir/dockerfiles
         cd ${{matrix.node}}
-        docker build -t clearlinux/${{matrix.node}} .
-        cd $dir
+        echo "############################################"
+        echo "############################################"
+        echo "Building  ${{matrix.node}} dockerfile"
+        echo "############################################"
+        echo "############################################"        
+        # docker build -t clearlinux/${{matrix.node}} .
+ 
