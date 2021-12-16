@@ -1,4 +1,4 @@
-name: "clearlinux ansible local CI workflow"
+name: "clearlinux ansible local CI wf"
 
 
 on:
