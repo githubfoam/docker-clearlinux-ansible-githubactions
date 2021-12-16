@@ -39,5 +39,5 @@ jobs:
         echo "Building  ${{matrix.node}} dockerfile"
         echo "############################################"
         echo "############################################"        
-        # docker build -t clearlinux/${{matrix.node}} .
+        docker build -t clearlinux/${{matrix.node}} .
  
