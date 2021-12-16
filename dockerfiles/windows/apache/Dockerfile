@@ -5,7 +5,7 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 ENV APACHE_VERSION 2.4.48
 
 RUN Invoke-WebRequest ('http://de.apachehaus.com/downloads/httpd-{0}-o111l-x64-vc15.zip' -f $env:APACHE_VERSION) -OutFile 'apache.zip' -UseBasicParsing ; \
-    Expand-Archive apache.zip -DestinationPath C:\ ; &&\
+    Expand-Archive apache.zip -DestinationPath C:\ ; \
     Remove-Item -Path apache.zip
 
 # RUN Invoke-WebRequest ('http://de.apachehaus.com/downloads/httpd-{0}-o111l-x64-vc15.zip' -f $env:APACHE_VERSION) -OutFile 'apache.zip' -UseBasicParsing ; `
