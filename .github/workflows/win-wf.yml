@@ -33,8 +33,11 @@ jobs:
     #     sudo apt-get install -y neofetch && neofetch   
     - name: "run test"
       run: |
-        dir=$(pwd)
-        cd $dir/dockerfiles/windows
+        # dir=$(pwd)
+        # cd $dir/dockerfiles/windows
+        $curDir = Get-Location
+        Write-Host "Current Working Directory: $curDir"
+        cd $curDir/dockerfiles/windows
         cd ${{matrix.node}}
         docker build -t windows/${{matrix.node}} .
         cd $dir         
