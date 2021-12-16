@@ -1,0 +1,46 @@
+name: "windows build all CI workflow"
+
+
+on:
+  push:
+    branches: [ test ]
+  schedule:
+      # https://crontab.guru/examples.html #every friday at midnight  
+      - cron:  '0 0 * * FRI' 
+jobs:
+
+  ubuntu-latest-2110-job:
+    name: "docker  ansible clearlinux"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+        #  - golang
+        #  - python
+         #windows cluster
+         - apache                 
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: |
+        hostnamectl status
+        lsb_release -a
+        lsb_release -d
+        cat /etc/lsb-release
+        cat /etc/issue
+        cat /etc/os-release
+        sudo apt-get install -y neofetch && neofetch   
+    - name: "run test"
+      run: |
+        dir=$(pwd)
+        cd $dir/dockerfiles/windows
+        cd ${{matrix.node}}
+        docker build -t windows/${{matrix.node}} .
+        cd $dir         
+    # - name: "run test"
+    #   run: |
+    #     dir=$(pwd)
+    #     cd $dir/dockerfiles
+    #     cd ${{matrix.node}}
+    #     docker build -t clearlinux/${{matrix.node}} .
+    #     cd $dir
