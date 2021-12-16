@@ -36,5 +36,5 @@ jobs:
         cd $dir/dockerfiles/macos
         cd ${{matrix.node}}
         docker build -t docker-osx/${{matrix.node}} .
-        # docker build -t docker-osx --build-arg VERSION=10.15.5 --build-arg SIZE=200G .
+        docker build -t docker-osx/${{matrix.node}}  --build-arg VERSION=10.15.5 --build-arg SIZE=200G .
         cd $dir         

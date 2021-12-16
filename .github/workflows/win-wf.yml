@@ -9,9 +9,10 @@ on:
       - cron:  '0 0 * * FRI' 
 jobs:
 
-  ubuntu-latest-2110-job:
+  windows-latest-2110-job:
     name: "docker  ansible clearlinux"
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest #no matching manifest for linux/amd64 in the manifest list entries
+    runs-on: windows-latest 
     strategy:
       matrix:
         node:
