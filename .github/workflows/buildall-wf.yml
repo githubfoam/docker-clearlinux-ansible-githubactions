@@ -1,4 +1,4 @@
-name: "build all CI workflow"
+name: "matrix build all CI workflow"
 
 
 on:
@@ -16,7 +16,8 @@ jobs:
       matrix:
         node:
          - golang
-         - python                 
+         - python
+         - clearlinux                 
     steps:
     - uses: actions/checkout@v2
     - name: "os fingerprinting"
